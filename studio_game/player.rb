@@ -37,7 +37,8 @@ if __FILE__ == $0
 
    players.each do |player|
    	puts player
+   	puts player.w00t
    end
-   
+
 
 end
