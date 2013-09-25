@@ -2,6 +2,7 @@ require_relative 'player'
 require 'rspec'
 describe Player do
 	before do
+		$stdout = StringIO.new # stops the output coming from players.rb
 	@initial_health = 100 
 	   @player = Player.new("kamal", @initial_health)
 		end
@@ -31,5 +32,25 @@ describe Player do
 		@player.blam
 		@player.health.should == 90
 	end
+    
+ context "with a health greater than 100" do
+    before do
+      @player = Player.new("larry", 110)
+    end
+  
+    it "is strong" do
+      @player.strong?.should be_true
+    end
+   end
+
+context "with a health less than 100" do
+    before do
+      @player = Player.new("larry", 90)
+    end
+
+   it "is wimpy" do
+    	@player.strong?.should be_false
+    end
+end
 
 end
