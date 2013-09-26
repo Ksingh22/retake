@@ -1,3 +1,4 @@
+require_relative 'die'
  class Game
 	attr_reader :title
 	def initialize(title)
@@ -8,18 +9,17 @@
 	def add_player(a_player)
 		@players << a_player
 	end
+
 	def play
-	puts "There are #{@players.size} players in the #{@title}"
+		puts "There are #{@players.size} players in the #{@title}"
 
- 	@players.each do |player|
-	puts player
-end
-@players.each do |player|
-	puts player.w00t
-	puts player.blam
-
-	puts player
-   end
-	
+	 	@players.each do |player|
+		puts player
 	end
+
+    @players.each do |player|
+   	GameTurn.take_turn(player)
+	
+end
+end
 end
