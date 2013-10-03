@@ -1,4 +1,5 @@
 require_relative 'die'
+require_relative 'player'
  class Game
 	attr_reader :title
 	def initialize(title)
@@ -9,17 +10,43 @@ require_relative 'die'
 	def add_player(a_player)
 		@players << a_player
 	end
+    def print_stats
+    	strong_players = @players.select{|player| player.strong?}
+    	wimpy_players = @players.reject{|player| player.strong?}
 
-	def play
+         puts "\n#{@title} Statistics:"
+
+        puts "\n#{strong_players.size} strong players:"
+    	strong_players.each do |player|
+        puts "#{player.name} #{player.health}"
+    	end
+    	
+    	puts "\n#{wimpy_players.size} wimpy players:"
+        wimpy_players.each do |player|
+        puts "#{player.name} (#{player.health})"
+    end
+    end
+	def play(rounds)
 		puts "There are #{@players.size} players in the #{@title}"
 
 	 	@players.each do |player|
 		puts player
 	end
-
+     1.upto(rounds) do |round|
+     puts "\nRound #{round}:"
     @players.each do |player|
    	GameTurn.take_turn(player)
-	
+	puts player
+	end
+	end
+	end
 end
-end
+if __FILE__ == $0
+player67 = Player.new("kamal", 110)
+ 
+
+ yes = Game.new("yes")
+ yes.add_player(player67)
+ yes.print_stats
+
 end

@@ -6,7 +6,9 @@ attr_accessor :name   # player name and health can be accessible now from outsid
 	@health = health
 	
     end
-
+def <=>(other)
+    other.score <=> score
+ end
 def to_s
   "I'm #{@name.capitalize} with a health of #{@health} and a score of #{score}."
 end
