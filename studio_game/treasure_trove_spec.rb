@@ -1,4 +1,6 @@
 require_relative 'treasure_trove'
+require 'rspec'
+# require_relative 'studio_game'
 
 describe Treasure do
 	before do
@@ -13,8 +15,9 @@ describe Treasure do
 	it "has a points attribute" do
     @treasure.points.should == 5
 	end
-
 end
+
+
 
 describe TreasureTrove do
   
@@ -45,5 +48,8 @@ describe TreasureTrove do
   it "has a crowbar worth 400 points" do
     TreasureTrove::TREASURES[5].should == Treasure.new(:crowbar, 400)
   end
-
+it "returns a random treasure" do
+  treasure = TreasureTrove.random
+  TreasureTrove::TREASURES.should include(treasure)
+end
 end
