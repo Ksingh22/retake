@@ -1,9 +1,10 @@
 require_relative 'player'
+require_relative 'game_turn'
 require 'rspec'
 describe Player do
 	before do
 		$stdout = StringIO.new # stops the output coming from players.rb
-	@initial_health = 100 
+	    @initial_health = 100 
 	   @player = Player.new("kamal", @initial_health)
 		end
 
@@ -32,6 +33,22 @@ describe Player do
 		@player.blam
 		@player.health.should == 90
 	end
+
+	it "computes points as the sum of all treasure points" do
+  @player.points.should == 0
+
+  @player.found_treasure(Treasure.new(:hammer, 50))
+
+  @player.points.should == 50
+
+  @player.found_treasure(Treasure.new(:crowbar, 400))
+  
+  @player.points.should == 450
+  
+  @player.found_treasure(Treasure.new(:hammer, 50))
+
+  @player.points.should == 500
+end
     
  context "with a health greater than 100" do
     before do

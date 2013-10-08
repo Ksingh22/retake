@@ -1,16 +1,20 @@
+require_relative 'treasure_trove'
 class Player
 attr_reader  :health, :score
 attr_accessor :name   # player name and health can be accessible now from outside the class 
+
 	def initialize(name, health = 100)
 	@name = name.capitalize
 	@health = health
-	
-    end
+  @found_treasures = Hash.new(0)
+  end
+
+
 def <=>(other)
     other.score <=> score
  end
 def to_s
-  "I'm #{@name.capitalize} with a health of #{@health} and a score of #{score}."
+  "I'm #{@name.capitalize} with a health of #{@health}, points #{points} ,and a score of #{score}."
 end
 
 def blam
@@ -23,15 +27,26 @@ def w00t
 	puts "#{@name} got w00ted and now health is #{@health}"
 end
 def score
-     @name.length + @health
-end
+     @health + points 
+   end
 
 def strong?
 	@health > 100
 end
+def points
+  @found_treasures.values.reduce(0, :+)
+
+end
+
+def found_treasure(treasure)
+  @found_treasures[treasure.name] += treasure.points
+  puts "#{@name} found a #{treasure.name} worth #{treasure.points} points."
+  puts "#{@name}'s treasures: #{@found_treasures}"
+end
+
 end
 if __FILE__ == $0
-	player1 = Player.new("kamal")
+	  player1 = Player.new("kamal")
     player2 = Player.new("larry")
     player3 = Player.new("curly")
     
@@ -44,6 +59,7 @@ if __FILE__ == $0
    players.each do |player|
    	puts player
    	puts player.w00t
+
    end
 
 

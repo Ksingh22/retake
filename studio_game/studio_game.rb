@@ -12,7 +12,7 @@
        Knuckleheads.add_player(player1)
        Knuckleheads.add_player(player2)
        Knuckleheads.add_player(player3)
-       Knuckleheads.play(1)
+       Knuckleheads.play(3)
        Knuckleheads.print_stats
 
 

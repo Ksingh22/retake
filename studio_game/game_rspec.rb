@@ -31,4 +31,9 @@ describe Game do
     @game.play(1)
     @player.health.should == @initial_health - 10
     end
+
+    it "assigns a treasure for points during a player's turn" do     
+   @game.play(1)
+   @player.points.should_not be_zero
+end
 end
