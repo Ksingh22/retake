@@ -1,6 +1,5 @@
 	require_relative 'player'
 	require_relative 'game'
-	require_relative 'game_turn'
 
 	player1 = Player.new("kamal")
     player2 = Player.new("larry")
@@ -12,7 +11,7 @@
        Knuckleheads.add_player(player1)
        Knuckleheads.add_player(player2)
        Knuckleheads.add_player(player3)
-       Knuckleheads.play(3)
+       Knuckleheads.play(2)
        Knuckleheads.print_stats
 
 
@@ -33,3 +32,5 @@
 	#  Pool.add_player(gas)
 	#  Pool.play(3)
 	 # Pool.print_stats
+
+

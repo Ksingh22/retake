@@ -23,6 +23,6 @@ module GameTurn
 end
 
 if __FILE__ == $0
-  player = Player.new("curly")
+  player = Player.new("curly", 125)
   GameTurn.take_turn(player)
 end

@@ -1,4 +1,4 @@
-require_relative 'die'
+require_relative 'game_turn'
 require_relative 'player'
 require_relative 'treasure_trove'
  class Game
@@ -11,6 +11,10 @@ require_relative 'treasure_trove'
 	def add_player(a_player)
 		@players << a_player
 	end
+    def total_points
+        @players.reduce(0){ |sum, player| sum + player.points}
+        
+    end
     def print_stats
     	strong_players = @players.select{|player| player.strong?}
     	wimpy_players = @players.reject{|player| player.strong?}
@@ -25,6 +29,16 @@ require_relative 'treasure_trove'
     	puts "\n#{wimpy_players.size} wimpy players:"
         wimpy_players.each do |player|
         puts "#{player.name} (#{player.health})"
+
+        @players.sort.each do |player|
+            puts "\n#{player.name}'s points total:"
+             player.each_found_treasure do |treasure|
+           puts "#{treasure.points} total #{treasure.name} points"
+       end
+            puts "\n#{player.points} grand total points"
+        end
+        puts "\n#{total_points} total points from treasures found"
+                    
     end
     end
 	def play(rounds)
@@ -51,7 +65,7 @@ require_relative 'treasure_trove'
 	end
 end
 if __FILE__ == $0
-player67 = Player.new("kamal", 110)
+player67 = Player.new("kamal")
  
 
  yes = Game.new("yes")
